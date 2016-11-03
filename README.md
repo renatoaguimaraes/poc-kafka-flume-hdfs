@@ -1,31 +1,31 @@
 # kafka-flume-hdfs-stream
 ## Kafka
 
-# Zookeeper
+### Zookeeper
 ```
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
-# Kafka server
+### Kafka server
 ```
 bin/kafka-server-start.sh config/server.properties
 ```
-# Criando tópico
+### Criando tópico
 ```
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 ```
-# Listando tópicos
+### Listando tópicos
 ```
 bin/kafka-topics.sh --list --zookeeper localhost:2181
 ```
-# Produtor
+### Produtor
 ```
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 ```
-# Consumidor
+### Consumidor
 ```
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
 ```
-# Produtor conectado no arquivo 
+### Produtor conectado no arquivo 
 ```
 bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties
 ```
