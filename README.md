@@ -24,6 +24,41 @@ bin/connect-standalone.sh config/connect-standalone.properties config/connect-fi
 
 ## Flume
 
+kafka-source.properties
+
+```
+flume1.sources = kafka-source-1
+flume1.channels = memoryChannel
+flume1.sinks = loggerSink
+
+flume1.sources.kafka-source-1.type = org.apache.flume.source.kafka.KafkaSource
+flume1.sources.kafka-source-1.zookeeperConnect = localhost:2181
+flume1.sources.kafka-source-1.topic = test
+flume1.sources.kafka-source-1.batchSize = 100
+flume1.sources.kafka-source-1.channels = memoryChannel
+flume1.sources.kafka-source-1.interceptors = i1
+flume1.sources.kafka-source-1.interceptors.i1.type = timestamp
+flume1.sources.kafka-source-1.kafka.consumer.timeout.ms = 100
+
+#flume1.sinks.loggerSink.channel = memoryChannel
+#flume1.sinks.loggerSink.type = file_roll
+#flume1.sinks.loggerSink.sink.directory = /Users/renato/Downloads/poc-kafka
+#flume1.sinks.loggerSink.sink.serializer = text
+
+ flume1.sinks.loggerSink.type = hdfs
+ flume1.sinks.loggerSink.hdfs.path = hdfs://localhost:9000/user/renato/%{topic}/%y-%m-%d
+ flume1.sinks.loggerSink.hdfs.rollInterval = 5
+ flume1.sinks.loggerSink.hdfs.rollSize = 0
+ flume1.sinks.loggerSink.hdfs.rollCount = 0
+ flume1.sinks.loggerSink.hdfs.threadsPoolSize = 10
+ flume1.sinks.loggerSink.hdfs.fileType = DataStream
+ flume1.sinks.loggerSink.channel = memoryChannel
+
+flume1.channels.memoryChannel.type = memory
+flume1.channels.memoryChannel.capacity = 10000
+flume1.channels.memoryChannel.transactionCapacity = 1000
+```
+
 bin/flume-ng agent -n flume1 -c conf -f conf/kafka-source.properties -Dflume.root.logger#INFO,console --classpath /Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/lib/zookeeper-3.4.6.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/hadoop-common-2.7.3.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/lib/commons-configuration-1.6.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/lib/hadoop-auth-2.7.3.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/hdfs/hadoop-hdfs-2.7.3.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/hdfs/lib/htrace-core-3.1.0-incubating.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/hdfs/lib/commons-io-2.4.jar 
 
 ## Hadoop
