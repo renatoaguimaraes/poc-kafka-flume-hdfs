@@ -1,7 +1,9 @@
 # kafka-flume-hdfs-stream
-## Kafka
 
+## Kafka
+Kafka is used for building real-time data pipelines and streaming apps. It is horizontally scalable, fault-tolerant, wicked fast, and runs in production in thousands of companies.
 ### Zookeeper
+ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
 ```
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
@@ -9,27 +11,28 @@ bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 bin/kafka-server-start.sh config/server.properties
 ```
-### Criando tópico
+### Topic
 ```
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 ```
-### Listando tópicos
+### Listing topics
 ```
 bin/kafka-topics.sh --list --zookeeper localhost:2181
 ```
-### Produtor
+### Productor
 ```
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 ```
-### Consumidor
+### Consumer
 ```
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
 ```
-### Produtor conectado no arquivo 
+### Consumer File Connector 
 ```
 bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties
 ```
 ## Flume
+Apache Flume is a distributed, reliable, and available system for efficiently collecting, aggregating and moving large amounts of log data from many different sources to a centralized data store.
 
 kafka-source.properties
 
