@@ -74,6 +74,7 @@ bin/flume-ng agent -n flume1 -c conf -f conf/kafka-source.properties -Dflume.roo
 ```
 
 ## Hadoop
+The Apache Hadoop software library is a framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models. It is designed to scale up from single servers to thousands of machines, each offering local computation and storage. Rather than rely on hardware to deliver high-availability, the library itself is designed to detect and handle failures at the application layer, so delivering a highly-available service on top of a cluster of computers, each of which may be prone to failures.
 
 core-site.xml
 ```
@@ -127,7 +128,7 @@ bin/hdfs dfs -find hdfs://localhost:9000/user/renato/test/16-11-02/ -name Flume*
 bin/hdfs dfs -cat hdfs://localhost:9000/user/renato/test/16-11-02/FlumeData.1478134513188
 ```
 
-## Links úteis
+## Links
 https://kafka.apache.org/documentation#quickstart
 
 http://zhongyaonan.com/hadoop-tutorial/setting-up-hadoop-2-6-on-mac-osx-yosemite.html
