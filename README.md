@@ -1,5 +1,10 @@
 # kafka-flume-hdfs-stream
 
+- Kafka 0.10.1.0
+- Zookeeper 3.4.6
+- Flume 1.7.0
+- Hadoop 2.7.3
+
 ## Kafka
 Kafka is used for building real-time data pipelines and streaming apps. It is horizontally scalable, fault-tolerant, wicked fast, and runs in production in thousands of companies.
 ### Zookeeper
