@@ -2,26 +2,33 @@
 ## Kafka
 
 # Zookeeper
+```
 bin/zookeeper-server-start.sh config/zookeeper.properties
-
+```
 # Kafka server
+```
 bin/kafka-server-start.sh config/server.properties
-
+```
 # Criando tópico
+```
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
-
+```
 # Listando tópicos
+```
 bin/kafka-topics.sh --list --zookeeper localhost:2181
-
+```
 # Produtor
+```
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
-
+```
 # Consumidor
+```
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
-
+```
 # Produtor conectado no arquivo 
+```
 bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties
-
+```
 ## Flume
 
 kafka-source.properties
@@ -45,24 +52,63 @@ flume1.sources.kafka-source-1.kafka.consumer.timeout.ms = 100
 #flume1.sinks.loggerSink.sink.directory = /Users/renato/Downloads/poc-kafka
 #flume1.sinks.loggerSink.sink.serializer = text
 
- flume1.sinks.loggerSink.type = hdfs
- flume1.sinks.loggerSink.hdfs.path = hdfs://localhost:9000/user/renato/%{topic}/%y-%m-%d
- flume1.sinks.loggerSink.hdfs.rollInterval = 5
- flume1.sinks.loggerSink.hdfs.rollSize = 0
- flume1.sinks.loggerSink.hdfs.rollCount = 0
- flume1.sinks.loggerSink.hdfs.threadsPoolSize = 10
- flume1.sinks.loggerSink.hdfs.fileType = DataStream
- flume1.sinks.loggerSink.channel = memoryChannel
+flume1.sinks.loggerSink.type = hdfs
+flume1.sinks.loggerSink.hdfs.path = hdfs://localhost:9000/user/renato/%{topic}/%y-%m-%d
+flume1.sinks.loggerSink.hdfs.rollInterval = 5
+flume1.sinks.loggerSink.hdfs.rollSize = 0
+flume1.sinks.loggerSink.hdfs.rollCount = 0
+flume1.sinks.loggerSink.hdfs.threadsPoolSize = 10
+flume1.sinks.loggerSink.hdfs.fileType = DataStream
+flume1.sinks.loggerSink.channel = memoryChannel
 
 flume1.channels.memoryChannel.type = memory
 flume1.channels.memoryChannel.capacity = 10000
 flume1.channels.memoryChannel.transactionCapacity = 1000
 ```
 
+```
 bin/flume-ng agent -n flume1 -c conf -f conf/kafka-source.properties -Dflume.root.logger#INFO,console --classpath /Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/lib/zookeeper-3.4.6.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/hadoop-common-2.7.3.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/lib/commons-configuration-1.6.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/lib/hadoop-auth-2.7.3.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/hdfs/hadoop-hdfs-2.7.3.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/hdfs/lib/htrace-core-3.1.0-incubating.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/hdfs/lib/commons-io-2.4.jar 
+```
 
 ## Hadoop
 
+core-site.xml
+```
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
+    </property>
+</configuration>
+```
+hdfs-site.xml
+```
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+</configuration>
+```
+mapred-site.xml
+```
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+</configuration>
+```
+yarn-site.xml
+```
+<configuration>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+</configuration>
+```
+```
 sbin/start-dfs.sh
 
 sbin/start-yarn.sh
@@ -76,6 +122,7 @@ bin/hdfs dfs -rmr hdfs://localhost:9000/user/renato/test
 bin/hdfs dfs -find hdfs://localhost:9000/user/renato/test/16-11-02/ -name Flume* -print
 
 bin/hdfs dfs -cat hdfs://localhost:9000/user/renato/test/16-11-02/FlumeData.1478134513188
+```
 
 ## Links úteis
 https://kafka.apache.org/documentation#quickstart
