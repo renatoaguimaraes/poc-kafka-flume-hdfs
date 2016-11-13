@@ -1,4 +1,4 @@
-# kafka-flume-hdfs-stream
+# Kafka, Flume and HDFS Data Stream
 
 ### Downloads
 
@@ -59,11 +59,6 @@ flume1.sources.kafka-source-1.channels = memoryChannel
 flume1.sources.kafka-source-1.interceptors = i1
 flume1.sources.kafka-source-1.interceptors.i1.type = timestamp
 flume1.sources.kafka-source-1.kafka.consumer.timeout.ms = 100
-
-#flume1.sinks.loggerSink.channel = memoryChannel
-#flume1.sinks.loggerSink.type = file_roll
-#flume1.sinks.loggerSink.sink.directory = /Users/renato/Downloads/poc-kafka
-#flume1.sinks.loggerSink.sink.serializer = text
 
 flume1.sinks.loggerSink.type = hdfs
 flume1.sinks.loggerSink.hdfs.path = hdfs://localhost:9000/user/renato/%{topic}/%y-%m-%d
