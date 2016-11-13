@@ -120,18 +120,23 @@ yarn-site.xml
 </configuration>
 ```
 ```
+# start hdfs
 sbin/start-dfs.sh
 
+# start yarn
 sbin/start-yarn.sh
 
+# create user dir
 bin/hdfs dfs -mkdir /user
-
 bin/hdfs dfs -mkdir /user/renato
 
+# create test dir
 bin/hdfs dfs -rmr hdfs://localhost:9000/user/renato/test
 
+# print file names
 bin/hdfs dfs -find hdfs://localhost:9000/user/renato/test/16-11-02/ -name Flume* -print
 
+# show content file
 bin/hdfs dfs -cat hdfs://localhost:9000/user/renato/test/16-11-02/FlumeData.1478134513188
 ```
 
