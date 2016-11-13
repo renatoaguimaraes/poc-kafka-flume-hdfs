@@ -1,17 +1,21 @@
 # kafka-flume-hdfs-stream
 
+### Downloads
+
 - [Kafka 0.10.1.0](https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.1.0/kafka_2.11-0.10.1.0.tgz)
 - [Zookeeper 3.4.6](http://mirror.nbtelecom.com.br/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz)
 - [Flume 1.7.0](http://www.apache.org/dyn/closer.lua/flume/1.7.0/apache-flume-1.7.0-bin.tar.gz)
 - [Hadoop 2.7.3](http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz)
 
-## Kafka
-Kafka is used for building real-time data pipelines and streaming apps. It is horizontally scalable, fault-tolerant, wicked fast, and runs in production in thousands of companies.
 ### Zookeeper
 ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
 ```
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
+
+## Kafka
+Kafka is used for building real-time data pipelines and streaming apps. It is horizontally scalable, fault-tolerant, wicked fast, and runs in production in thousands of companies.
+
 ### Kafka server
 ```
 bin/kafka-server-start.sh config/server.properties
@@ -48,6 +52,7 @@ flume1.sinks = loggerSink
 
 flume1.sources.kafka-source-1.type = org.apache.flume.source.kafka.KafkaSource
 flume1.sources.kafka-source-1.zookeeperConnect = localhost:2181
+flume1.sources.kafka-source-1.groupId = flume
 flume1.sources.kafka-source-1.topic = test
 flume1.sources.kafka-source-1.batchSize = 100
 flume1.sources.kafka-source-1.channels = memoryChannel
