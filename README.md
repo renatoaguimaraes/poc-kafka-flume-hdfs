@@ -1,6 +1,6 @@
 # Kafka, Flume and HDFS Data Stream
 
-### Downloads
+### Installations
 
 - [Kafka 0.10.1.0](https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.1.0/kafka_2.11-0.10.1.0.tgz)
 - [Zookeeper 3.4.6](http://mirror.nbtelecom.com.br/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz)
