@@ -141,6 +141,8 @@ bin/hdfs dfs -cat hdfs://localhost:9000/user/renato/test/16-11-02/FlumeData.1478
 ```
 
 ## Links
+https://www.linkedin.com/pulse/real-time-data-process-renato-a-guimarães
+
 https://kafka.apache.org/documentation#quickstart
 
 http://zhongyaonan.com/hadoop-tutorial/setting-up-hadoop-2-6-on-mac-osx-yosemite.html
