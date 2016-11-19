@@ -7,7 +7,7 @@
 - [Flume 1.7.0](http://www.apache.org/dyn/closer.lua/flume/1.7.0/apache-flume-1.7.0-bin.tar.gz)
 - [Hadoop 2.7.3](http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz)
 
-## Configuration
+## Configurations
 
 ### Zookeeper
 ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
