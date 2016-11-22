@@ -11,12 +11,25 @@
 
 ### Zookeeper
 ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
+
+```
+tar -vzxf zookeeper-3.4.6.tar.gz
+
+cd zookeeper-3.4.6
+```
+
 ```
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 
 ## Kafka
 Kafka is used for building real-time data pipelines and streaming apps. It is horizontally scalable, fault-tolerant, wicked fast, and runs in production in thousands of companies.
+
+```
+tar -vzxf kafka_2.11-0.10.1.0.tgz
+
+cd kafka_2.11-0.10.1.0
+```
 
 ### Kafka server
 ```
@@ -44,6 +57,14 @@ bin/connect-standalone.sh config/connect-standalone.properties config/connect-fi
 ```
 ## Flume
 Apache Flume is a distributed, reliable, and available system for efficiently collecting, aggregating and moving large amounts of log data from many different sources to a centralized data store.
+
+```
+tar -vzxf apache-flume-1.7.0-bin.tar.gz
+
+cd apache-flume-1.7.0-bin
+```
+
+### Config file
 
 kafka-source.properties
 
@@ -76,12 +97,22 @@ flume1.channels.memoryChannel.capacity = 10000
 flume1.channels.memoryChannel.transactionCapacity = 1000
 ```
 
+### Start Flume
+
 ```
 bin/flume-ng agent -n flume1 -c conf -f conf/kafka-source.properties -Dflume.root.logger#INFO,console --classpath /Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/lib/zookeeper-3.4.6.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/hadoop-common-2.7.3.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/lib/commons-configuration-1.6.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/common/lib/hadoop-auth-2.7.3.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/hdfs/hadoop-hdfs-2.7.3.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/hdfs/lib/htrace-core-3.1.0-incubating.jar:/Users/renato/Downloads/poc-kafka/hadoop-2.7.3/share/hadoop/hdfs/lib/commons-io-2.4.jar 
 ```
 
 ## Hadoop
 The Apache Hadoop software library is a framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models. It is designed to scale up from single servers to thousands of machines, each offering local computation and storage. Rather than rely on hardware to deliver high-availability, the library itself is designed to detect and handle failures at the application layer, so delivering a highly-available service on top of a cluster of computers, each of which may be prone to failures.
+
+```
+tar -vzxf hadoop-2.7.3.tar.gz
+
+cd hadoop-2.7.3
+```
+
+### Config
 
 core-site.xml
 ```
@@ -119,6 +150,7 @@ yarn-site.xml
     </property>
 </configuration>
 ```
+
 ```
 # start hdfs
 sbin/start-dfs.sh
