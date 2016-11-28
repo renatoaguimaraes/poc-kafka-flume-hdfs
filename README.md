@@ -152,6 +152,9 @@ yarn-site.xml
 ```
 
 ```
+# format namenode
+bin/hadoop namenode -format
+
 # start hdfs
 sbin/start-dfs.sh
 
